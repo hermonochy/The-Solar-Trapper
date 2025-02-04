@@ -8,7 +8,7 @@ For cost reasons, it is possible that the system may not be able to open the cur
 Closing works by releasing a weight with a servo arm. The potential energy of the weight moves the curtain via simple pulleys.
 The locking mechanism should, for convenience, move back into the original position after releasing the weight for starting the curtain closing operation.
 
-To start off, we split the jobs to each induvidual:
+To start off, we split the jobs into small parts, assigned to each induvidual:
 
 | Person | Job |
 | ---- | ------|
@@ -16,3 +16,9 @@ To start off, we split the jobs to each induvidual:
 | Meron3r | Create a program to log the light sensor measurements |
 | cheesecat123 | Create a program to log the temperature sensor measurements |
 | OCBA1 | Find the required power of the motors |
+
+## The Curtain System
+
+We decided on a simple but effective curtain system, as shown in the video below:
+
+![](data/Curtain_System1.gif)
