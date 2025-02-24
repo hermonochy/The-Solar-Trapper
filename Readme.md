@@ -20,10 +20,20 @@ To start off, we split the jobs into small parts, assigned to each induvidual:
 
 We originally decided on a simple but effective curtain system, as shown in the video below:
 
-![](data/Curtain_System1.gif)
+![](data/Curtains.gif)
 
 However, the resistance between the curtain and the railing was so great that it overcame the pulley connected to the motor and the required parts were out the budget of this project, so we decided on a simpler mechanism to only close the curtain. A weight would be connected to the curtain, to be released by a servo. The weight would fall and provide the energy to close the curtain. The user has to reset the curtain when the sun is about to heat the room again in the next morning. 
 
+## The Sensor System
+
+In order to know when to close the curtain, we needed some sensors. Our options were:
+
+- A temperature sensor
+- A UV detector
+- A Photoresistor (A light sensor)
+- A Photo Diode (A faster light sensor)
+
+We eventually decided upon a Temperature and Light Sensor. The exact types were the [DS18B20](#temp-sensor) and [LDR Photo Resistor](#light-sensor) respectively. We bought 2 temperature sensors to place one directly next to the window and one in the middle of the room, to determine if the sun is still heating.
 
 ## Our Orders
 
