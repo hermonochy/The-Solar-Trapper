@@ -12,18 +12,18 @@ To start off, we split the jobs into small parts, assigned to each induvidual:
 
 | Person | Job |
 | ---- | ------|
-| hermonochy | Create the hardware to open/close the curtains |
-| Meron3r | Create a program to log the light sensor measurements |
+| hermonochy | Create the hardware to open/close the curtains and log the sensor data. |
+| Meron3r | Create a program to get the Weather Forecast, due to the possibility of a temporary occlusion of sun. |
 | cheesecat123 | Create a program to log the temperature sensor measurements |
-| OCBA1 | Find the required power of the motors |
 
 ## The Curtain System
 
-We decided on a simple but effective curtain system, as shown in the video below:
+We originally decided on a simple but effective curtain system, as shown in the video below:
 
 ![](data/Curtain_System1.gif)
 
-Our main issue with this was that the resistance was so great that it overcame the pulley connected to the motor.
+However, the resistance between the curtain and the railing was so great that it overcame the pulley connected to the motor and the required parts were out the budget of this project, so we decided on a simpler mechanism to only close the curtain. A weight would be connected to the curtain, to be released by a servo. The weight would fall and provide the energy to close the curtain. The user has to reset the curtain when the sun is about to heat the room again in the next morning. 
+
 
 ## Our Orders
 
