@@ -1,6 +1,6 @@
 with open("2025-02-17.csv") as file:
 
-	lastTemp, lastLight = -1, -1
+	lastTemp, lastLight = -1.0, -1
 	cnt = 0
 
 	nextDay = False
@@ -12,7 +12,6 @@ with open("2025-02-17.csv") as file:
 
 		try:
 			temp, light = float(values[3][0:-1]), int(values[2])
-			#print(f"{temp} {light}");
 		except ValueError:
 			continue
 
