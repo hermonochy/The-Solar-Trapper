@@ -10,11 +10,10 @@ The locking mechanism should, for convenience, move back into the original posit
 
 To start off, we split the jobs into small parts, assigned to each induvidual:
 
-| Person | Job |
-| ---- | ------|
-| hermonochy | Create the hardware to open/close the curtains and log the sensor data. |
-| Meron3r | Create a program to get the Weather Forecast, due to the possibility of a temporary occlusion of sun. |
-| cheesecat123 | Create a program to log the temperature sensor measurements |
+| Person | Role | Job |
+| ---- | | ------|
+| hermonochy | Team leader and Hardware specialist | Create the hardware to open/close the curtains and log the sensor data. |
+| Meron3r | Programmer | Create a program to get the Weather Forecast, due to the possibility of a temporary occlusion of sun. |
 
 ## The Curtain System
 
@@ -27,6 +26,8 @@ A weight would be connected to the curtain, to be released by a servo. The weigh
 
 We attempted to do this on a real curtain, but soon realised that this would take to long to set up, should we have to bring it elsewhere. Therefore, we decided to do this on a [model curtain](#model-curtain), slightly smaller in size but far more mobile.
 
+To reduce friction, we used fishing wire and a pulley. Due to this, we were able to roll the wire around the pulley several times, ensuring that it would not slip off. Our newtonmetre recorded that we needed roughly 0.4 N, the equivalent of an average size teddy bear. It worked perfectly first time, but for the pulley to hold, we required super glue as hot glue wasn't strong enough. Afterwards, the servo was attatched under it, to be connected to a loop at the bottom.
+
 ## The Sensor System
 
 In order to know when to close the curtain, we needed some sensors. Our options were:
@@ -34,7 +35,7 @@ In order to know when to close the curtain, we needed some sensors. Our options 
 - A temperature sensor
 - A UV detector
 - A Photoresistor (A light sensor)
-- A Photo Diode (A faster light sensor)
+- A Photo Diode (A faster-responding light sensor)
 
 We eventually decided upon a Temperature and Light Sensor. The exact types were the [DS18B20](#temp-sensor) and [LDR Photo Resistor](#light-sensor) respectively. We bought 2 temperature sensors to place one directly next to the window and one in the middle of the room, to determine if the sun is still effectivly heating.
 
