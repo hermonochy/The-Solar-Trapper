@@ -11,8 +11,8 @@ The locking mechanism should, for convenience, move back into the original posit
 To start off, we split the jobs into small parts, assigned to each induvidual:
 
 | Person | Role | Job |
-| ---- | | ------|
-| hermonochy | Team leader and Hardware specialist | Create the hardware to open/close the curtains and log the sensor data. |
+| ---- | ------ | ------ |
+| hermonochy | Team leader and Hardware | Create the hardware to open/close the curtains and log the sensor data. |
 | Meron3r | Programmer | Create a program to get the Weather Forecast, due to the possibility of a temporary occlusion of sun. |
 
 ## The Curtain System
@@ -21,10 +21,10 @@ We originally atrempted a simple but effective curtain system, as shown in the v
 
 ![](data/Curtains.gif)
 
-However, the resistance between the curtain and the railing was so great that it overcame the pulley connected to the motor and the required parts were out the budget of this project, so we decided on a simpler mechanism to only close the curtain. 
+However, the resistance between the curtain and the railing was so great that it overcame the pulley connected to the motor and the required parts to solve this were out the budget of this project, so we decided on a simpler mechanism, only to close the curtain. 
 A weight would be connected to the curtain, to be released by a servo. The weight would fall and provide the energy to close the curtain. The user has to reset the curtain when the sun is about to heat the room again in the next morning. 
 
-We attempted to do this on a real curtain, but soon realised that this would take to long to set up, should we have to bring it elsewhere. Therefore, we decided to do this on a [model curtain](#model-curtain), slightly smaller in size but far more mobile.
+We attempted to do this on a real curtain, but soon realised that this would take too long to set up, should we have to bring it elsewhere. Therefore, we decided to do this on a [model curtain](#model-curtain), slightly smaller in size but far more mobile.
 
 To reduce friction, we used fishing wire and a pulley. Due to this, we were able to roll the wire around the pulley several times, ensuring that it would not slip off. Our newtonmetre recorded that we needed roughly 0.4 N, the equivalent of an average size teddy bear. It worked perfectly first time, but for the pulley to hold, we required super glue as hot glue wasn't strong enough. Afterwards, the servo was attatched under it, to be connected to a loop at the bottom.
 
