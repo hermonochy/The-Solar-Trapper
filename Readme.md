@@ -8,12 +8,13 @@ For cost reasons, it is possible that the system may not be able to open the cur
 Closing works by releasing a weight with a servo arm. The potential energy of the weight moves the curtain via simple pulleys.
 The locking mechanism should, for convenience, move back into the original position after releasing the weight for starting the curtain closing operation.
 
-To start off, we split the jobs into small parts, assigned to each induvidual:
+## Members
 
 | Person | Role | Job |
-| ---- | ------ | ------ |
-| hermonochy | Team leader and Hardware | Create the hardware to open/close the curtains and log the sensor data. |
-| Meron3r | Programmer | Create a program to get the Weather Forecast, due to the possibility of a temporary occlusion of sun. |
+| :----: | :------: | ------ |
+| hermonochy | Team leader | Lead the team and create a bridge between the hardware and software teams. |
+| Meron3r | Programmer | Write the code to power the system. |
+| - | Hardware Specialist | Create the physical parts of the curtain system |
 
 ## The Curtain System
 
