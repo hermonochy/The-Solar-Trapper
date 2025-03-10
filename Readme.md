@@ -15,10 +15,12 @@ The locking mechanism should, for convenience, move back into the original posit
 | hermonochy | Team leader | Lead the team and create a bridge between the hardware and software teams. |
 | Meron3r | Programmer | Write the code to power the system. |
 | - | Hardware Specialist | Create the physical parts of the curtain system |
+| OCBA2 | Co Programmer and Writer | Write things up and assist in programming |
+| OCBA1 | Mathematician | Do the calculations and physics |
 
 ## The Curtain System
 
-We originally atrempted a simple but effective curtain system, as shown in the video below:
+We originally attempted a simple but effective curtain system, as shown in the video below:
 
 ![](data/Curtains.gif)
 
