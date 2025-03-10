@@ -16,7 +16,7 @@ The locking mechanism should, for convenience, move back into the original posit
 | Meron3r | Programmer | Write the code to power the system. |
 | - | Hardware Specialist | Create the physical parts of the curtain system |
 | OCBA2 | Co Programmer and Writer | Write things up and assist in programming |
-| OCBA1 | Mathematician | Do the calculations and physics |
+| OCBA1 | Mathematician | Do the calculations, physics and hardware |
 
 ## The Curtain System
 
@@ -29,8 +29,9 @@ A weight would be connected to the curtain, to be released by a servo. The weigh
 
 We attempted to do this on a real curtain, but soon realised that this would take too long to set up, should we have to bring it elsewhere. Therefore, we decided to do this on a [model curtain](#model-curtain), slightly smaller in size but far more mobile.
 
-To reduce friction, we used fishing wire and a pulley. Due to this, we were able to roll the wire around the pulley several times, ensuring that it would not slip off. Our newtonmetre recorded that we needed roughly 0.4 N, the equivalent of an average size teddy bear. It worked perfectly first time, but for the pulley to hold, we required super glue as hot glue wasn't strong enough. Afterwards, the servo was attatched under it, to be connected to a loop at the bottom. 
-Next we glued on the servos with simple hot glue and that worked fine. Another challenge that we had to overcome was attaching the rest of the electronics(Raspberry pi sensors and Arduino Nano) without them short circuiting against the curtain or getting in the way of the pulley system. 
+To reduce friction, we used fishing wire and a pulley. Due to this, we were able to roll the wire around the pulley several times, ensuring that it would not slip off. Our newtonmetre recorded that we needed roughly 0.4 N, the equivalent of an average size teddy bear. It worked perfectly first time, but for the pulley to hold, we required super glue as hot glue wasn't strong enough. Afterwards, the servo was attatched under it, to be connected to a loop at the bottom.
+
+Next we glued on the servos with hot glue. Another challenge that we had to overcome was attaching the rest of the electronics (Raspberry Pi, Sensors and Arduino Nano), without them short circuiting against the curtain railing or getting in the way of the pulley system. 
 
 ## The Sensor System
 
@@ -41,11 +42,13 @@ In order to know when to close the curtain, we needed some sensors. Our options 
 - A Photoresistor (A light sensor)
 - A Photo Diode (A faster-responding light sensor)
 
-We eventually decided upon a Temperature and Light Sensor. The exact types were the [DS18B20](#temp-sensor) and [LDR Photo Resistor](#light-sensor) respectively. We bought 2 temperature sensors to place one directly next to the window and one in the middle of the room, to determine if the sun is still effectively heating. Next we continued to get the sensors functional it was easy to measure the temperature by connecting it to a GPIO pin and however the light sensor proved to be a bit more difficult since it was a digital output and therefore we needed to use an Arduino Nano to get the values we decided to store it in a CSV file for ease of reading. One big challenge we faced were annoying students walking in front of the sensors and people who might have been ventilating. We then attempted to plot it with matplotlib but due to version issues we eventually learned and had to use pandas. This is shown in the file [plotWithPandas](TempLog/plotWithPandas.py). 
+We eventually decided upon a Temperature and Light Sensor. The exact types were the [DS18B20](#temp-sensor) and [LDR Photo Resistor](#light-sensor) respectively. We bought 2 temperature sensors to place one directly next to the window and one in the middle of the room, to determine if the sun is still effectively heating.
+
+Next, we continued to get the sensors functional. It was easy to use the temperature sensor by connecting it to a GPIO pin. However, the light sensor proved to be a bit more difficult since it provided an analog output. Therefore we needed to use an Arduino Nano to get the values, storing both in a CSV (**C**omma **S**eperated **V**alue) file for ease of reading. One big challenge we faced were annoying students walking in front of the sensors and people who might have been ventilating. This is shown in the file [plotWithPandas](TempLog/plotWithPandas.py). 
 
 
 
-## Our Orders On
+## Our Orders
 
 ### Light sensor:
 
