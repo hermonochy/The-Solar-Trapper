@@ -14,9 +14,8 @@ The locking mechanism should, for convenience, move back into the original posit
 | :----: | :------: | ------ |
 | hermonochy | Team leader | Lead the team and create a bridge between the hardware and software teams. |
 | Meron3r | Programmer | Write the code to power the system. |
-| - | Hardware Specialist | Create the physical parts of the curtain system |
-| OCBA2 | Co Programmer and Writer | Write things up and assist in programming |
-| OCBA1 | Mathematician | Do the calculations, physics and hardware |
+| OCBA2 | Co Programmer and Documenter | Documentation and assist in programming |
+| OCBA1 | Mathematician | Calculations, physics and hardware |
 
 ## The Curtain System
 
@@ -62,15 +61,45 @@ Next, we continued to get the sensors functional. It was easy to use the tempera
 
 - Price: £ 3.95
 
-- quantity: 2
+- quantity: 1
 
 - Link: https://www.ebay.co.uk/itm/272667082078?chn=ps&var=571797800872&norover=1&itemid=571797800872_272667082078&targetid=4585169654799843&device=c&mktype=&googleloc=&poi=&campaignid=412354547&mkgroupid=1305120599331881&rlsatarget=pla-4585169654799843&abcId=9300541&merchantid=87779
 
-### Model Curtain:
+### Servo
+
+- Price: £3.99
 
 - quantity: 1
 
-### Total: £ 11.89
+### Arduino Nano
+
+- Price: £4.99
+
+- quantity: 1
+
+### Micro SD Card
+
+- Price: £ 7.99
+
+- quantity: 1
+
+### Salvaged Parts
+
+- Price: Estimated at about £1
+
+### Model Stand
+
+- Price: £18.99
+
+- quantity: 1
+
+### Model Curtain
+
+- Price: £10.19
+
+- quantity: 1
+
+### Total: £ 55.09
 
 
 
