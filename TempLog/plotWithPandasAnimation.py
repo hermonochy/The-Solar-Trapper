@@ -10,6 +10,7 @@ cols2read = ["date","time","Column1","Column2"]
 
 closingTimeData = read_csv("closingTimes.txt", usecols=[0], names=["datetime"], parse_dates=[0])
 print(closingTimeData)
+closingTimeArray = closingTimeData["datetime"]
 
 #series = read_csv('TempLog/20250217_48h.csv', header=0, parse_dates=[0],usecols=cols2read)#, index_col=0)
 series = read_csv('20250223.csv', header=0, parse_dates=[0],usecols=cols2read)  #, index_col=0)
@@ -43,29 +44,42 @@ ln2, = ax2.plot(X, Y2, 'm', label='Temperature')
 ax1.set_ylabel("Light Level: sunny if < 15")
 ax2.set_ylabel("Temperature [Celcius]")
 
+
 def init():
     ax1.set_ylim(0, 1048)
     ax2.set_ylim(8, 24)
     #pyplot.gca().legend(('Y1','Y2'))
     ax1.legend(loc='lower right')
     ax2.legend(loc='upper right')
+
+
     return ln1, ln2,
 
 def update(nextTimeIndex):
     x_anim.append(X[nextTimeIndex])
     y1_anim.append(Y1[nextTimeIndex])
     y2_anim.append(Y2[nextTimeIndex])
-    #x_anim=X[0:nextTimeIndex]
-    #y1_anim=Y1[0:nextTimeIndex]
-    #y2_anim=Y2[0:nextTimeIndex]
-    #print(x_anim)
-    #print(y1_anim)
-    #print(y2_anim)
+
+
+    for idx, closetime in enumerate(closingTimeArray):
+        currentPlotTime = X[nextTimeIndex].timestamp()
+        if abs(closetime.timestamp()-currentPlotTime) < 500:
+            ax1.axvline(x=closetime, linestyle='--', color='red', label="closing times")
+    """
+    if nextTimeIndex>80000:
+        for idx, closetime in enumerate(closingTimeArray):
+            if idx == 0:
+                ax1.axvline(x=closetime, linestyle='--', color='red', label="closing times")
+            else:
+                ax1.axvline(x=closetime, linestyle='--', color='red')
+    """
+
+
     ln1.set_data(x_anim,y1_anim)
     ln2.set_data(x_anim,y2_anim)
     return ln1, ln2,
 
-anim = FuncAnimation(fig, update, frames=np.linspace(0,len(X),1000, dtype=int), init_func=init, blit=False, interval=0.1)    
+anim = FuncAnimation(fig, update, frames=np.linspace(0,len(X)-1,1000, dtype=int), init_func=init, blit=False, interval=0.1)    
 
 
 
