@@ -1,6 +1,11 @@
 # Automatic curtain closer
 
-This system closes the curtains when the sun goes away, to keep the solar heat in and reduce heating costs.
+## Overview
+
+Here in Britain, many people face the issue of freezing due to the inability to heat. This project has been made to tackle this problem. 
+Often, the temperature is affected by lack of insulation, paticulary around the windows. Curtains are able to prevent this, but most people are away at work so unable to close them! For this reason, we decided that the most prudent course of action for this project would be to automatically close the curtains. 
+
+The system we designed closes the curtains when the sun goes away, to keep the solar heat in and reduce heating costs.
 
 The system needs a detector that can sense very bright light (e.g., the sun), and can trigger curtain closing when the sun has vanished for a certain time. It should not close immediately, as it could be a wrong measurement, or the sun can come back.
 If there is a internet connection, the system may take the short range weather forecast into account to make a decision to close.
