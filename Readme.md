@@ -2,16 +2,20 @@
 
 ## Overview
 
-Here in Britain, many people face the issue of freezing due to the inability to heat. This project has been made to tackle this problem. 
-Often, the temperature is affected by lack of insulation, paticulary around the windows. Curtains are able to prevent this, but most people are away at work so unable to close them! For this reason, we decided that the most prudent course of action for this project would be to automatically close the curtains. 
+Here in Britain, many people face the issue of freezing due to the inability to heat. This project has been made to help tackle this problem. 
+Often, the temperature is affected by lack of insulation, particulary around the windows. Curtains are able to prevent this, but most people are away at work so unable to close the curtains after the sun stops heating the room. For this reason, we decided that the most prudent course of action for this project would be to automatically close the curtains at the optimal time. 
 
-The system we designed closes the curtains when the sun goes away, to keep the solar heat in and reduce heating costs.
+The system we designed closes the curtains when the sun goes away or the temperature in the room starts to drop, so as to keep the solar heat inside and reduce heating costs.
 
-The system needs a detector that can sense very bright light (e.g., the sun), and can trigger curtain closing when the sun has vanished for a certain time. It should not close immediately, as it could be a wrong measurement, or the sun can come back.
-If there is a internet connection, the system may take the short range weather forecast into account to make a decision to close.
-For cost reasons, it is possible that the system may not be able to open the curtain again, and may need to be reset manually.
+The system has a detector that can sense very bright light (i.e., the sun), a sensor to measure the temperature accurately and an actuator to release a curtain closing mechanism, which is triggered when the sun has vanished for a certain time or becomes too weak to effectivly heat the room. The system does not respond immediately, so that wrong measurements or reappearance of the sun do not result in reduced energy harvesting.
+
+For cost reasons, the system does not support opening curtains automatically. Instead, the user needs to reset these manually.
 Closing works by releasing a weight with a servo arm. The potential energy of the weight moves the curtain via simple pulleys.
-The locking mechanism should, for convenience, move back into the original position after releasing the weight for starting the curtain closing operation.
+
+Subsequent to closing action, the locking mechanism moves back into the original position for convenience in resetting the weight and curtain to harvest solar energy.
+
+Work in progress includes pulling short range weather forecasts information from open-meteo.org for making better decisions about curtain closing times.
+We have considered using reinforment learning techniques to automate the system, but these are currently out of scope due to lack of training data and time.
 
 ## Members
 
