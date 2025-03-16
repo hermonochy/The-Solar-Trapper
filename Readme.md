@@ -1,8 +1,9 @@
-# Automatic curtain closer
+# The Smart Solar Trap
 
 ## Overview
 
 Here in Britain, many people face the issue of freezing due to the inability to heat. This project has been made to help tackle this problem. 
+
 Often, the temperature is affected by lack of insulation, particulary around the windows. Curtains are able to prevent this, but most people are away at work so unable to close the curtains after the sun stops heating the room. For this reason, we decided that the most prudent course of action for this project would be to automatically close the curtains at the optimal time. 
 
 The system we designed closes the curtains when the sun goes away or the temperature in the room starts to drop, so as to keep the solar heat inside and reduce heating costs.

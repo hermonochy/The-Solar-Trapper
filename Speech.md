@@ -21,11 +21,12 @@ But how do we determine the best time to close the curtains? The answer lies in 
 ## Data logging
 
 To find an algorithm for optimal closing time, we first had to gather data.
-For this, we connected a [....] digital temperature sensor to the Raspi GPIOs. For sensing light, we used a photoresitor circuit. For the latter, we had to convert analog to digital values. The simplest thing to do was connecting the light sensor to an Ardunino Nano, and run a a small program on the Arduino to write analog light readings to the serial interface. The Raspi can then read this from the USB port.
+For this, we connected a DS18B20 digital temperature sensor to the Raspi GPIOs. For sensing light, we used a photoresitor circuit. For the latter, we had to convert analog to digital values. The simplest thing to do was connecting the light sensor to an Ardunino Nano, and run a a small program on the Arduino to write analog light readings to the serial interface. The Raspi can then read this from the USB port.
 
-We logged the data from ... to  ... , when it was mostly sunny in Oxford.
+We logged the data from 2025-02-23 10:59 pm to 2025-03-03 07:34 am, when it was mostly sunny in Oxford.
 
-[show plot]
+[show plot of logged data. explain: x-Axis time, temperature scale, light level scale, behaviour of temperature/light, ]
+
 This plot shows the temperature and light readings over time. Note that temperature falls over night, rises in the morning from 6am to 8am while the heater is running, and then falls again until the sun kicks in. 
 The dashed red lines are our computed curtain closing times for each day. Curtains are closed if the temperature has started to drop for more than 30 minutes and there is not sufficient sunlight to heat the space.
 
@@ -37,10 +38,15 @@ Now we also connected a servo to the Raspi GPIO pins to test the curtain closing
 One of the issues we had with the servo was that the Raspi doesn't give good signals with the `GPIO.PWM` Python module. The servo was always wiggling. We had to use the `pigpio` package instead. 
 [demonstrate]
 
+The installed system combines the code for getting curtain closing time with the code actuating the servo. 
+
 ## Future Improvements
 
-While this project is cheap and effective, there are several features that we were unable to implement due to lack of time. Following are a few of them:
+While this project is cheap and effective, there are several features that we were unable to implement due to lack of funding. Following are a few of them:
 
+- Cover for hardware: The project is currently a prototype, and requires a cover for all the wires and parts.
 - Bi-Directional Control: Using a stepper motor would allow for bi-directional control of the curtains. This means that the user would not have to reset the curtains, and coud run for an extended period without requiring handling.
 - Solar-Power: Adding solar panels into the design could provide a self-sufficient power source for the system. 
-- Machine Learning: Developing machine learning algorithms could allow the system to continuously learn from patterns.
+
+Once we got to collect more data and know how to process them with machine learning technique, we develop machine learning algorithms that allow the system to continuously improve. Some grown ups have told us we can use reinforcement learning. But we don't know yet if that is nonsense.
+
