@@ -24,7 +24,6 @@ We have considered using reinforment learning techniques to automate the system,
 | :----: | :------: | ------ |
 | hermonochy | Team leader | Lead the team and create a bridge between the hardware and software teams. |
 | Meron3r | Programmer | Write the code to power the system. |
-| OCBA2 | Co Programmer and Documenter | Documentation and assist in programming |
 | OCBA1 | Mathematician | Calculations, physics and hardware |
 
 ## The Curtain System
@@ -57,7 +56,7 @@ Next, we continued to get the sensors functional. It was easy to use the tempera
 
 This program worked, but the data was shown all at once. Therefore, we created a seperate file [plotWithPandasAnimation](TempLog/plotWithPandasAnimation.py), to create an animation of the data as it went along. While animating the light and temperature values was relatively straightforward, handling the lines representing the closing times proved to be greater challenge. After several days of work, we managed to resolve it, but then encountered a problem with the labels. The labels only appeared at the end of the animation, and one label was made per line (this resulted in no less than 11 labels being plotted!). Since this did not affect the overall plot, we decided to leave it unresolved for now. 
 
-Next we turned our attention to a demo program for the video, as the main program would have taken too long to demonstrate effectively. Initially, we focused solely on temperature as an input, which functioned adequately. However, we encountered isssues with the servo, which did not reset to the correct position and often twitched erratically. We attempted to program the majority on a seperate device due to low processing power on the rasberry pi, but this caused a minor problem with merge conflicts and authentication when using git.
+Next we turned our attention to a demo program for the video, as the main program would have taken too long to demonstrate effectively. Initially, we focused solely on temperature as an input, which functioned adequately. However, we encountered isssues with the servo, which did not reset to the correct position and often twitched erratically. To solve this, we had to use the `pigpio` package instead. This didn't work at all, however, and we have yet to find out the problem. We attempted to program the majority on a seperate device due to low processing power on the rasberry pi, but this caused a minor problem with merge conflicts and authentication when using git.
 
 
 ## Our Orders
