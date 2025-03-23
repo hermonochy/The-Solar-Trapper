@@ -18,6 +18,10 @@ Subsequent to closing action, the locking mechanism moves back into the original
 Work in progress includes pulling short range weather forecasts information from [open-meteo.org](https://open-meteo.com/) for making better decisions about curtain closing times.
 We have considered using reinforment learning techniques to automate the system, but these are currently out of scope due to lack of training data and time.
 
+---
+
+To set this system up for ypurself, see [Our Construction Manual](./Construction.md)
+
 ## Members
 
 | Person | Role | Job |

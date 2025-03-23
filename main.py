@@ -14,10 +14,17 @@ CLI PARAMETER:
 - 
 """
 
+import os
+import glob
 import queue
 import argparse
 import time
+import math
+import datetime
+import serial
+import RPi.GPIO as GPIO
 from datetime import datetime
+
 
 parser = argparse.ArgumentParser(
 	prog='Curtain Closer',
@@ -35,62 +42,72 @@ args = parser.parse_args()
 q = queue.Queue()
 
 curtainClosed = True
+servoPin = 18
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(servoPin, GPIO.OUT)
 
-with open("TempLog/20250223.csv") as file, open("closingTimes.txt", 'w') as outFile:
-
-	secondsWithoutSun = 0
-
-	for i, line in enumerate(file):	
-		
-		values = line[0:-1].split(",")
-
-		#if i>20000:
-		#	break
+p = GPIO.PWM(servoPin, 50)
+p.start(0)
 
 
-		try:
-			temp, light = float(values[3][0:-1]), int(values[2])
-		except ValueError:
-			print("ValueError")
-			continue
-
-		if q.qsize() <= args.triggerTime:
-			q.put(temp)
-
-		itIsSunnyNow = light < args.lightTrigger
-
-		if not itIsSunnyNow:
-			secondsWithoutSun += 1
-		else:
-			secondsWithoutSun = 0
-
-		print(i, values, "qsize:", q.qsize())
-		timeLogged = datetime.strptime(values[1], " %H:%M:%S")
-		
-		print(timeLogged)	
-
-		if curtainClosed and timeLogged.hour == 8:
-			curtainClosed = False
-
-		if q.qsize()>args.triggerTime-1:
-			tempNsecondsAgo = q.get()
-			currentTemperature = temp
-
-			temperatureDroppedByHalfKelvin = currentTemperature + args.tempTrigger < tempNsecondsAgo
-			print("temperatureDroppedByHalfKelvin ", temperatureDroppedByHalfKelvin, " currentTemperature ", currentTemperature, " tempNsecondsAgo ", tempNsecondsAgo)
+def set_angle(angle, pwm, delay = 0.1):
+	duty = angle / 18 + 2
+	pwm.ChangeDutyCycle(duty)
+	time.sleep(delay)
 
 
-			if not curtainClosed and timeLogged.hour >= args.beginning:
-					
-					
-					itWasntSunnyForNseconds = secondsWithoutSun >= args.triggerTime
+with open(device_file, 'r') as file, open('sensorLog.txt', 'w') as outFile, serial.Serial('/dev/ttyUSB0', 9600, timeout = 2) as ser:
+	try:
+		secondsWithoutSun = 0
 
-					if itWasntSunnyForNseconds and temperatureDroppedByHalfKelvin:
-						print("Closing now!")
-						time.sleep(5)
-						curtainClosed = True
-						outFile.write(values[0] + values[1] + "\n")
+		while True:
+			lines = file.readlines()
+			light = ser.readline().decode('utf-8')
+			ser.reset_input_buffer()
+			file.seek(0)
+			time.sleep(1)
+			try:
+				equals_pos = lines[1].find('t=')
+			except IndexError:
+				print("I",end=' ')
+				continue
+			if equals_pos != -1:
+				temp_string = lines[1][equals_pos+2:]
+				temp = float(temp_string)/1000
+				measurementRecord = (f'{datetime.today().strftime("%Y-%m-%d")}, {datetime.now().strftime("%H:%M:%S")}, {int(light)}, {temp}')
+				outFile.write(measurementRecord+"\n")
 
-#			if light > 15 and temp + 0.5 > 
-			#...
-		#elif timeLogged.hour >= 16
+				if q.qsize() <= args.triggerTime:
+					q.put(temp)
+				
+				itIsSunnyNow = int(light) < int(args.lightTrigger)
+
+				if not itIsSunnyNow:
+					secondsWithoutSun += 1
+				else:
+					secondsWithoutSun = 0
+
+				if q.qsize()>args.triggerTime-1:
+					tempNsecondsAgo = q.get()
+					currentTemperature = temp
+
+					temperatureDroppedByHalfKelvin = currentTemperature + args.tempTrigger < tempNsecondsAgo
+					print("temperatureDroppedByHalfKelvin ", temperatureDroppedByHalfKelvin, " currentTemperature ", currentTemperature, " tempNsecondsAgo ", tempNsecondsAgo, "light val: ", light)
+					print(args.triggerTime)
+
+					if not curtainClosed:							
+							   
+					   itWasntSunnyForNseconds = secondsWithoutSun >= args.triggerTime
+					   if temperatureDroppedByHalfKelvin and itwasntSunnyForNSeconds:
+						   print("Closing now!")
+						   set_angle(45, p, 1)
+						   time.sleep(5)
+						   set_angle(180, p)
+						   time.sleep(5)
+						   curtainClosed = True
+						   break
+
+
+	except KeyboardInterrupt:
+		set_angle(180, p)
+		quit()

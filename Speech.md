@@ -20,14 +20,17 @@ But how do we determine the best time to close the curtains? The answer lies in 
 
 ## Data logging
 
-To find an algorithm for optimal closing time, we first had to gather data.
-For this, we connected a DS18B20 digital temperature sensor to the Raspi GPIOs. For sensing light, we used a photoresistor circuit. For the latter, we had to convert analog to digital values. The simplest thing to do was to connect the light sensor to an Arduino Nano, and run a small program on the Arduino to write analog light readings to the serial interface. The Raspi can then read this from the USB port.
-
-We logged the data from 2025-02-23 10:59 pm to 2025-03-03 07:34 am, when it was mostly sunny in Oxford.
-
 [show plot of logged data. explain: x-Axis time, temperature scale, light level scale, behaviour of temperature/light, ]
+--> Each tick on the x-axis is represents midnight of the respective day. Temperatures are plotted in purple, scale on the right, light levels in green. Lower readings mean more light. Values below 15 are full sun.
 
-This plot shows the temperature and light readings over time. Note that temperature falls overnight, rises in the morning from 6am to 8am while the heater is running, and then falls again until the sun kicks in. 
+To find an algorithm for the most ideal closing time, we needed to gather data first, as it's impractical to test algorithms with live data.
+
+We logged the data from the 23rd of February to the 3rd of March, a time when it was mostly sunny in Oxford.
+
+This plot shows the temperature and light readings over time. Each tick on the x-axis is represents midnight of the respective day. Note that temperature, shown in purple, falls overnight, rises in the morning from 6am to 8am while the heater is running, and then falls again until the sun heats the room later in the morning.
+
+The light values - the green line - are the opposite. During the night, the light value peaks, and stays so for most of the night. Then when the sun comes up, the values suddenly drop. The gradient increases further when the curtains are closed. The values stay at below 20 for most of the day, before increasing again in the evening.
+
 The dashed red lines are our computed curtain closing times for each day. Curtains are closed if the temperature has started to drop for more than 30 minutes and there is not sufficient sunlight to heat the space.
 
 Results appear to be reasonable. 
@@ -42,10 +45,13 @@ The installed system combines the code for getting curtain closing time with the
 
 ## Future Improvements
 
-While this project is cheap and effective, there are several features that we were unable to implement due to lack of funding. Following are a few of them:
+It works, but there is still plenty to do:
 
-- Cover for hardware: The project is currently a prototype, and requires a cover for all the wires and parts.
-- Bi-Directional Control: Using a stepper motor would allow for bi-directional control of the curtains. This means that the user would not have to reset the curtains, and could run for an extended period without requiring handling.
-- Solar-Power: Adding solar panels into the design could provide a self-sufficient power source for the system. 
+- For normal users, everything needs to be boxed up to protect the wires.
+- Most people cannot work with the command line interface, so the system needs to have a simpler user interface
 
-Once we have got to collect more data and know how to process them with machine learning techniques, we develop machine learning algorithms that allow the system to continuously improve. Some grown ups have told us we can use reinforcement learning. But we don't know yet if that is nonsense.
+For use of machine learning, we need to simulate the heat transfer, e.g. with open-meteo data as input. We still have to learn how to do it.
+
+If you are a technical expert, go to https://github.com/Cheney-School/HTM-Solar-Trappers for code and documentation.
+
+Thanks for watching.
