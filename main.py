@@ -95,7 +95,7 @@ with open(device_file, 'r') as file, open('sensorLog.txt', 'w') as outFile, seri
 					print("temperatureDroppedByHalfKelvin ", temperatureDroppedByHalfKelvin, " currentTemperature ", currentTemperature, " tempNsecondsAgo ", tempNsecondsAgo, "light val: ", light)
 					print(args.triggerTime)
 
-					if not curtainClosed:							
+					if not curtainClosed and timeLogged.hour >= args.beginning:							
 							   
 					   itWasntSunnyForNseconds = secondsWithoutSun >= args.triggerTime
 					   if temperatureDroppedByHalfKelvin and itwasntSunnyForNSeconds:
@@ -111,3 +111,4 @@ with open(device_file, 'r') as file, open('sensorLog.txt', 'w') as outFile, seri
 	except KeyboardInterrupt:
 		set_angle(180, p)
 		quit()
+		
