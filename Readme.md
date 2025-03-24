@@ -20,7 +20,7 @@ We have considered using reinforment learning techniques to automate the system,
 
 ---
 
-To set this system up for ypurself, see [Our Construction Manual](./Construction.md)
+To set this system up for ypurself, see [Our Construction Manual](./Construction.md).
 
 ## Members
 

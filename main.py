@@ -49,6 +49,8 @@ GPIO.setup(servoPin, GPIO.OUT)
 p = GPIO.PWM(servoPin, 50)
 p.start(0)
 
+device_file = '/sys/bus/w1/devices/28-3fa9d445207e/w1_slave' 
+date = str(datetime.today().strftime("%Y %m %d"))
 
 def set_angle(angle, pwm, delay = 0.1):
 	duty = angle / 18 + 2
