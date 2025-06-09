@@ -7,7 +7,12 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-    A project to find a cheap and simple way to heat houses.
+    %TODO Complete abstract
+    The Solar Trapper is a project to find a cheap and simple way to heat houses for those who are unable to afford heating. 
+    The solution to this issue is to create a system that automatically closes the curtains when the sun no longer heats the house, 
+    insulating it from loosing its heat and therefore saving money on heating.
+
+    This project is free and open source \cite{url:repo}.
 \end{abstract}
 \tableofcontents
 \section{Introduction}
@@ -133,7 +138,7 @@ Table \ref{tab:projtimeline} lists the various steps required in this project an
         \caption{Closed}
     \end{subfigure}
  
-    \caption{Curtain system: Open and closed state.}
+    \caption{Curtain system: Open and closed state. Teddy bear represents weight.}
     \label{fig:CurtainMechanismOpen}
 \end{figure*}
 
@@ -197,7 +202,8 @@ Therefore, we chose a Temperature Sensor and a Photoresistor as the sensors for 
 
 \subsection{Equipment}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 
-Table \ref{tab:equipment} lists the parts that were required while building this project.
+Table \ref{tab:equipment} lists the parts that were required while building this project. This shows that this design is a very econimic solution,
+as most of the costs come from the model parts. On an actual curtain, the cost would likely be an estimated £30, affordable by most people.
 
 \begin{table}[h!]
     \caption{Equipment}
@@ -217,9 +223,107 @@ Table \ref{tab:equipment} lists the parts that were required while building this
     \label{tab:equipment}
 \end{table}
 
-\section{Project Execution}
+\section{Project execution}
+
+For demonstrations and work in school, the hardware needs to be easily transportable. Hence, rather than a fixed install of a full sized system, we decided to build a model. 
+The result is the stand with a model curtain seen in Figure \ref{fig:curtainSys}.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[][][]{0.24\textwidth}
+        \includegraphics[width=\linewidth]{figures/model_curtainClosing0.png}
+        \caption{Open}
+    \end{subfigure}
+        \begin{subfigure}[][][]{0.24\textwidth}
+        \includegraphics[width=\linewidth]{figures/model_curtainClosing1.png}
+        \caption{Servo Released}
+    \end{subfigure}
+        \begin{subfigure}[][][]{0.24\textwidth}
+        \includegraphics[width=\linewidth]{figures/model_curtainClosing2.png}
+        \caption{Closing}
+    \end{subfigure}
+    \begin{subfigure}[][][]{0.24\textwidth}
+        \includegraphics[width=\linewidth]{figures/model_curtainClosing3.png}
+        \caption{Closed}
+    \end{subfigure}
+ 
+    \caption{Model system: System is activating after temperature and light levels drop.}
+    \label{fig:curtainSys}
+\end{figure}
 
 \subsection{Hardware Assembly}
+
+The following parts and tools were used in assembling the model:
+
+\begin{itemize}
+    \item Servo
+    \item Weight
+    \item Fishing Wire
+    \item Pulley and a suitable Axle, loose enough to spin with relative ease.
+    \item DS18B20 Temperature Sensor
+    \item LDR Photo Resistor (Light Sensor)
+    \item Raspberry Pi
+    \item Arduino Nano
+    \item Micro SD Card
+    \item Wires
+    \item Hot Glue Gun
+\end{itemize}
+
+\subsubsection{Release System}
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{figures/curtainDetailViewSide.png}
+        \caption{Release System: Servo, pulley and light sensor are fitted to the blue bracket. 
+        Raspberry Pi and Arduino Nano are temporarilly suspended on the rail. 
+        The temperature sensor (out of frame) is connected via the black cable pointing downwards.
+        The monkey, if released, pulls the curtain. }
+    \end{subfigure}
+        \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=\linewidth]{figures/wireSalat1.png}
+        \caption{Wiring on the RPi:
+        Servo and temperature sensor are connected to the GPIO pins, servo wired in grey, purple and white, 
+        temperature sensor wires in red, black and yellow.
+        In the background, the Arduino Nano has the light sensor board connected to read data and provide power.}
+    \end{subfigure}
+
+    \caption{Close-up of release system components.}
+    \label{fig:closeUpOfSys}
+\end{figure}
+
+The following steps are to install the system responsible for closing the curtain. Be careful to place the parts in the correct location, 
+to avoid the wire from being misaligned. Also refer to Figure \ref{fig:closeUpOfSys}.
+
+\begin{itemize}
+    \item Put the pulley on the axle.
+    \item Attach the axle to one end of the curtain railing so that it is perpendicular to the movement of the curtain. 
+    Glue using 2 component super glue, then coat it with a layer of hot glue for stability. 
+    The pulley should be close to but not touching the railing.
+    \item Use fishing wire to connect the end of curtain to the weight through the pulley, then create a loop further along to hook the servo to.
+    \item Use hot glue to secure the servo motor to the model stand just below, but not in the way of, the pulley.
+    \item Ensure the servo arm can move freely to release the weight.
+\end{itemize}
+
+\subsubsection{Wiring}
+
+The final steps in the assembly of the system is to wire everything up (also refer to Fig. \ref{fig:plot1curtainCircuit}):
+
+\begin{itemize}
+    \item Connect the VCC pin of the DS18B20 to Pin 1  on the Raspberry Pi \emph{(RPi)}.
+    \item Connect the GND pin of the DS18B20 to Pin 6 on the RPi.
+    \item Connect the data pin of the DS18B20 to the GPIO7.
+
+    \item Connect the VCC on the LDR Light Sensor to 5V on the Arduino Nano.
+    \item Connect the two GND's together.
+    \item Connect the AO (Analog Output) on the LDR to the A5 pin.
+
+    \item Once the servo is attached, connect the GND (negative) wire to pin 20 on the RPi.
+    \item Attach the VCC (positive) wire to pin 17 on the RPi.
+    \item Connect the sig wire to pin 16 on the RPi
+
+    \item Once the above steps have been completed, attach the Arduino Nano to the RPi via USB cable. Upload `LightSensorTest.ino` to the Arduino Nano.
+\end{itemize}
 
 \begin{figure}[h!]
     \includegraphics[width=\linewidth]{./figures/curtainCircuit.pdf}
@@ -230,7 +334,16 @@ Table \ref{tab:equipment} lists the parts that were required while building this
     \label{fig:plot1curtainCircuit}
   \end{figure}
 
+\subsubsection{Software configuration}
+
+\begin{itemize}
+    \item Enable the 1-wire protocol on the RPi \cite{url:1wire}.
+    \item Upload sofware to Arduino board for reading analog light level values and forwarding to Raspberry Pi. Find details in Section \ref{sec:datalogging}.
+    \item Install the dependencies on the command line interface \emph{(CLI)}: \newline \verb|pip install pandas matplotlib numpy RPi.GPIO|.
+\end{itemize}
+
 \subsection{Data logging}
+\label{sec:datalogging}
 
 For developing and testing algorithms, it is impractical to work with live data. 
 Instead, data should be logged into an easy to read file, and algorithms can then be tested by replaying this file.
@@ -261,7 +374,7 @@ void loop (){
 \end{lstlisting}
 
 The Arduino is connected to the Raspberry Pi with a USB interface, and the values from the Arduino can
-therefore be read by opening the system file \verb|/dev/ttyUSB0|.
+therefore be read by opening the system file \verb|/dev/ttyUSB0|, once every second.
 
 The following Python listing illustrates the process of reading data from sensors and clock,
 and writing these into a log file.
@@ -301,74 +414,58 @@ with open(device_file, 'r') as f, open(date+'.csv', 'w') as outputfile, serial.S
       print(measurementRecord)
       outputfile.write(measurementRecord+"\n")
 
-
 \end{minted}
 \end{listing}
 
-\subsection{Data Plotting}
+\subsubsection{Data Plotting}
+
+%TODO: discuss matplotlib issues
+
+To easily view the data and possibly develop it, it is necessary to plot the data. 
+Figure \ref{fig:plot1} displays logged data for a range of days in winter of 2025.
+Plots were generated from the logged data using pandas and matplotlib libraries.
 
 \begin{figure}[h!]
     \includegraphics[width=\linewidth]{./figures/logDataPlot.pdf}
     \caption{Temperature and light levels logged from 24 February 2025 to 3 March 2025. Ticks on the x-axis indicate midnight of each day.
     Vertical orange lines indicate for each day the time of conditions for 
-    curtain closing being met, i.e., temperature dropping for 30 minutes and light levels too low for effective solar heating. Note that temperature 
-    is rising in early mornings (6-8 am) and evenings (5-9pm) following conventional heating system activation. }  
+    curtain closing being met, i.e., temperature dropping for 30 minutes and light levels too low for effective solar heating. There is one point per second. 
+    Note that temperature is rising in early mornings (6-8 am) and evenings (5-9pm) following conventional heating system activation. }  
     \label{fig:plot1}
   \end{figure}
 
-To easily view the data and possibly develop the data, it is necessary to plot the data. 
-Figure \ref{fig:plot1} displays logged data for a range of days in winter of 2025.
-Plots were generated from the logged data using pandas and matplotlib libraries, with the following program:
+\section{Development of closing algorithm}
 
-\begin{lstlisting}
-import pandas as pd
-from pandas import read_csv
-from pandas import DataFrame
-from pandas import Grouper
-from matplotlib import pyplot
+%TODO Describe observations from log data
+%Desrive closing alg / psueducode
+%Describe driver program impl for testing
 
-cols2read = ["date","time","Column1","Column2"]
+The final step was to develop the algorithm that tells the servo when to close the curtains. 
+While we originally attempted to design a system that returns the percentage chance of the closing time being correct,
+we quickly realised the complexity of the code required, when a simple Boolean output would do. 
+Using Figure \ref{fig:plot1}, we finalised the plot to close the curtains if it is the afternoon, 
+the temperature drops by 0.5°C over a period of 30 minutes and there is not enough sunlight to heat the space, or if it is close to sunset. 
+To check the difference between the current temperature value and the value 30 minutes ago, we used a queue which holds 1800 values, 
+one for each second. Each time it recives a new value, it compares it to the first one, and checks if the temperature has dropped by 0.5°C.
+Light value increases as it gets darker, so once the light value is more than 15 and the temperature also falls, the curtain closes.
+In the event that it is simply a very hot day, the curtain system will close around sunset, for which a program exists to compute it\cite{url:sunsetEquation}.
 
-closingTimeData = read_csv("closingTimes.txt", usecols=[0], names=["datetime"], parse_dates=[0])
-print(closingTimeData)
+The above expressed in pseudo code is shown below.
 
-series = read_csv('20250223.csv', header=0, parse_dates=[0],usecols=cols2read)  #, index_col=0)
-print(series.head())
+\begin{verbatim}
+if time is pm AND 
+    temperature drops for 30 minutes AND 
+    light level > 15 OR 
+    sunset time reached:
+        do: close curtain
+\end{verbatim}
 
-series["pandasdatetime"]=pd.to_datetime([str(date) + ' ' + str(time) for date,time in zip(series["date"],series["time"])])
-print(series.head())
+\section{Results and discussion}
+%TODO short text
 
-print(f"Time loc {series.columns.get_loc("time")}")
-
-X = series["pandasdatetime"] #series.index
-
-Y1=series['Column1']
-Y2=series['Column2']
-
-
-fig, ax1 = pyplot.subplots(figsize=(10,6))
-ax2 = ax1.twinx()
-
-ax1.plot(X, Y1, 'g', label='Light intensity')
-ax2.plot(X, Y2, 'm', label='Temperature')
-
-ax1.set_ylabel("Light Level: sunny if < 15")
-ax2.set_ylabel("Temperature [Celcius]")
-
-ax1.set_ylim(0, 1048)
-ax2.set_ylim(8, 24)
-ax1.legend(loc='lower right')
-ax2.legend(loc='upper right')
-pyplot.axvline(pd.to_datetime(closingTimeData["datetime"])[0], color = 'r', label = "Curtain Closing Time")
-for datetime in pd.to_datetime(closingTimeData["datetime"]):
-    pyplot.axvline(datetime, color = 'r')
-pyplot.legend(loc='upper left')
-
-pyplot.title("Sensor Data Log and Curtain Closing Inference")
-
-pyplot.show()
-
-\end{lstlisting}
+We tested the system over the period of a week, and the results proved promising. 
+However, in some situations, it may be more benificial to have a more expensive system that can manage itself, capable of both opening, and closing, the curtains 
+to adapt to more unpredictable weather conditions.
 
 
 \section{Future Work}
@@ -380,19 +477,26 @@ data and time.
 
 \begin{thebibliography}{99}
 
-    \bibitem{url:energyUse} 2023 UK greenhouse gas emissions, provisional figures \url{https://assets.publishing.service.gov.uk/media/6604460f91a320001a82b0fd/uk-greenhouse-gas-emissions-provisional-figures-statistical-release-2023.pdf}
+    \bibitem{url:repo} The Smart Solar Trap. \hyperlink{https://github.com/hermonochy/The-Solar-Trapper}
 
-    \bibitem{url:solarConstant} Solar Constant \url{https://en.wikipedia.org/wiki/Solar\_constant\#Apparent\_magnitude} (retrieved: 1 March 2025)
+    \bibitem{url:energyUse} 2023 UK greenhouse gas emissions, provisional figures \hyperlink{https://assets.publishing.service.gov.uk/media/6604460f91a320001a82b0fd/uk-greenhouse-gas-emissions-provisional-figures-statistical-release-2023.pdf}
 
-    \bibitem{url:solarEnergyStore} \url{https://solar-energy-store.co.uk/off-grid-solar-pv-kits/2kw-2000w-solar-panel-pv-kit-system-for-off-grid-hybrid-self-storage-battery-storage-premium/}
+    \bibitem{url:solarConstant} Solar Constant \hyperlink{https://en.wikipedia.org/wiki/Solar\_constant\#Apparent\_magnitude} (retrieved: 1 March 2025)
 
-    \bibitem{url:solarVenti} SolarVenti air collectors: \url{https://www.hess-solar.de}
+    \bibitem{url:solarEnergyStore} \hyperlink{https://solar-energy-store.co.uk/off-grid-solar-pv-kits/2kw-2000w-solar-panel-pv-kit-system-for-off-grid-hybrid-self-storage-battery-storage-premium/}
 
-    \bibitem{url:initialCurtainMechanism} Initial curtain opening and closing mechanism: \url{https://www.youtube.com/shorts/H6Un9TCUDxk}
+    \bibitem{url:solarVenti} SolarVenti air collectors: \hyperlink{https://www.hess-solar.de}
 
-    \bibitem{url:digitalTempSensor} DS18B20 Sensor: \url{https://randomnerdtutorials.com/raspberry-pi-ds18b20-python/}
+    \bibitem{url:initialCurtainMechanism} Initial curtain opening and closing mechanism: \hyperlink{https://www.youtube.com/shorts/H6Un9TCUDxk}
 
-    \bibitem{url:openmeteo} Open Meteo: \url{https://open-meteo.com/}, accessed on 26 Feb 2025.
+    \bibitem{url:1wire} Activating the 1-wire protocol on Raspbian: 
+        \hyperlink{https://www.raspberrypi-spy.co.uk/2018/02/enable-1-wire-interface-raspberry-pi/}, accessed on 27 Feb 2025.
+
+    \bibitem{url:digitalTempSensor} DS18B20 Sensor: \hyperlink{https://randomnerdtutorials.com/raspberry-pi-ds18b20-python/}
+
+    \bibitem{url:sunsetEquation} Sunset Equation: \hyperlink{https://en.wikipedia.org/wiki/Sunrise_equation}
+
+    \bibitem{url:openmeteo} Open Meteo: \hyperlink{https://open-meteo.com/}, accessed on 26 Feb 2025.
         
 \end{thebibliography}
 
