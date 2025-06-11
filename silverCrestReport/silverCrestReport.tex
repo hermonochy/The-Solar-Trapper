@@ -3,16 +3,17 @@
 \usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{minted}
-\title{Solar room heating automation}
+\title{The Solar Trapper}
 \begin{document}
 \maketitle
 \begin{abstract}
-    %TODO Complete abstract
     The Solar Trapper is a project to find a cheap and simple way to heat houses for those who are unable to afford heating. 
     The solution to this issue is to create a system that automatically closes the curtains when the sun no longer heats the house, 
     insulating it from loosing its heat and therefore saving money on heating.
 
-    This project is free and open source \cite{url:repo}.
+    While originally intended to be a group project for submission to the PA Consulting Raspberry Pi competition, 
+    none of the original members made a contribution to the project.
+    Everything described here is released\cite{url:repo} under a permissive free and open source MIT license.
 \end{abstract}
 \tableofcontents
 \section{Introduction}
@@ -32,13 +33,13 @@ this may save up to $5 Kwh$, or the equivalent of 1 Kg of firewood for each $m^2
 
 An obvious choice to start with would be photovoltaic panels, using the generated electricity to heat the water used in the heaters, 
 but a cursory market study of available components indicates that an adequately sized photovoltaic system (roughly 2kW of power) 
-would cost roughly £4000\cite{url:solarEnergyStore}, well above the budget of typical persons in need of additional heating  
+would cost roughly £4000\cite{url:solarEnergyStore}, well above the budget of a typical person in need of additional heating  
 and with an unclear amortisation schedule. 
-Therefore, we rule out using photovoltaics for electric heating.
+Therefore, photovoltaics were ruled out for electric heating.
 
 \subsection{Air collectors for room heating}
 
-Another method that was considered was using Air collectors for room heating, which work by using solar energy to heat the air, which is then circulated into a room. 
+Another method that was considered was using air collectors for room heating, which work by using solar energy to heat the air, which is then circulated into a room. 
 They are simple and robust as well as providing fresh air to the room, ensuring the house does not grow moist when the owner is away for longer periods. 
 However, they are very expensive at roughly £2200 for 2kW heating output\cite{url:solarVenti}. Also, they are difficult to install and often only ideal for a permanent home, 
 so those renting a house - generally those who require it the most - would be unable to make use of it.
@@ -49,24 +50,24 @@ A very cost effective way of keeping the temperature up in a room is to open cur
 and then close the curtains when the temperature starts to fall again in the evening. 
 The issue with this is that many people are away at work during the optimal time for closing the curtains.
 
-For this reason, we decided that the most prudent course of action for this project is to design a system that automatically closes the curtains at the optimal time, 
+For this reason, the most prudent course of action for this project was decided to be to design a system that automatically closes the curtains at the optimal time, 
 letting the sun in only while it still effectively heats. 
 
 In addition, this system is very simple and cheap, which would allow those who need this extra insulation to afford it.
 
-The system we designed closes the curtains when the sun goes away or the temperature in the room starts to drop, so as to keep the solar heat inside 
+The system designed closes the curtains when the sun goes away or the temperature in the room starts to drop, so as to keep the solar heat inside 
 and reduce heating costs.
 
 It has a detector that can sense very bright light (i.e., the sun), a sensor to measure the temperature accurately and an actuator to 
-release a curtain closing mechanism, which is triggered when the sun has vanished for a certain time or becomes too weak to effectivly heat the room.
+release a curtain closing mechanism, which is triggered when the sun has vanished for a certain time or becomes too weak to effectively heat the room.
  The system does not respond immediately, so that wrong measurements or reappearance of the sun do not result in reduced energy harvesting.
 
 
-For cost reasons, the system does not support opening curtains automatically, as originally considered. Instead, the user needs to reset these manually.
-Closing works by releasing a weight with a servo arm. The potential energy of the weight moves the curtain via simple pulleys.
+For cost reasons, the system does not support opening curtains automatically, as was originally intended. Instead, the user needs to reset these manually.
+Closing works by releasing a weight with a servo arm. The potential energy of the weight moves the curtain via a simple pulley system.
 
 Subsequent to closing action, the locking mechanism moves back into the original position for convenience in resetting the weight and curtain 
-to harvest solar energy.
+for the next day.
 
 \section{Project Plan}
 
@@ -89,7 +90,7 @@ Table \ref{tab:projtimeline} lists the various steps required in this project an
         Build hardware & 23 March 2025 \\
         Create video presentation & 24 March 2025 \\
         Submit to Raspberry Pi competion to get feedback & 24 March 2025 \\
-        Write project report, submit to CREST &  31 June 2025\\
+        Write project report, submit to CREST &  24 June 2025\\
     \end{tabular}
     \label{tab:projtimeline}
 \end{table}
@@ -142,21 +143,21 @@ Table \ref{tab:projtimeline} lists the various steps required in this project an
     \label{fig:CurtainMechanismOpen}
 \end{figure*}
 
-One of the main challenges we faced was to design a mechanism that could close the curtains in a cheap and reliable way. 
+One of the main challenges was to design a mechanism that could close the curtains in a cheap and reliable way. 
 An example of such a rather complex and costly system is shown in Figure \ref{fig:initialCurtainMechanism}.
-We designed a similar system on a large curtain.
+The initial design was a similar system on a large curtain.
 
 While seemingly simple at the start, the design quickly became less than ideal, as it would require additional sensors to signal the motor to stop, 
 and the resistance between the curtain and the railing was so great that the pulley connected to the motor could not overcame it. Both of these problems were solvable, 
-but the cost would be increased significantly, and so we designed a new system:
+but the cost would be increased significantly. Therefore the decision was made to design a novel system:
 
-A weight would be connected to the curtain, to be released by a servo. The weight would fall and provide the energy to close the curtain. 
+A weight is connected to the curtain, to be released by a servo. The weight would fall and provide the energy to close the curtain. 
 The user has to reset the curtain when the sun is about to heat the room again in the next morning. Although this system is only able to close curtains, 
-it provides the cheap and simple option we needed, so we settled onto this version.
+it provides the cheap and simple option required.
 
-To reduce friction, we used fishing wire and a pulley. This allowed us to to roll the wire around the pulley several times, ensuring that it would not slip off. 
-Our newtonmetre recorded that we needed roughly 0.4 N, the equivalent of an average size teddy bear. It worked perfectly first time, but for the pulley to hold, 
-we required super glue as hot glue wasn't strong enough. Afterwards, the servo was attatched under it, to be connected to a loop at the bottom.
+Using fishing wire and a pulley reduced friction to acceptable levels. This permitted the wire to roll around the pulley several times, ensuring that it would not slip off. 
+A Newtonmetre indicated roughly 0.4 N of force were needed  - the equivalent of an average size teddy bear. It worked perfectly first time, but fixing the pulley firmly 
+required super glue as hot glue on its own was not strong enough. Afterwards, the servo was attatched under it, to be connected to a loop at the bottom.
 
 
 \subsection{Sensor selection criteria}
@@ -171,7 +172,7 @@ Selection criteria for sensors include:
     \item Availability
 \end{itemize}
 
-The data it requires would be the amount of energy going into the room and the energy going out. Thus, our options were:
+The data it requires would be the amount of energy going into the room and the energy going out. Thus, the options were:
 
 \begin{itemize}
     \item A temperature sensor - measure the temperature to determine when the temperature drops and ensure the Photoresistor does not act when the sun goes behind a cloud.
@@ -185,7 +186,7 @@ The data it requires would be the amount of energy going into the room and the e
     \begin{tabular}{l | l | l | l | l | l}
         Sensor & Price & Availability & Accuracy & Simplicity & Total\\
         \hline
-        Photo Resistor & 4 & 3 & 4 & 2 & 13 \\
+        Photo Resistor & 4 & 5 & 4 & 2 & 14 \\
         Temperature Sensor & 4 & 4 & 4 & 5 & 17 \\
         Photo Diode & 1 & 4 & 5 & 3 & 13 \\
         UV detector & 1 & 3 & 2 & 1 & 7 \\
@@ -195,14 +196,14 @@ The data it requires would be the amount of energy going into the room and the e
 
 \end{table}
 
-As seen in the trade study in Table \ref{tab:sensor}, the Temperature sensor, the Photo Diode and the Photo Resistor scored the highest points. 
+As seen in the trade study in Table \ref{tab:sensor}, the Temperature sensor and the Photo Resistor scored the highest points. 
 While the Photo Diode would be very accurate, it is unneccessarily expensive when a Photoresistor would do just fine. 
 A UV sensor has a high price and needs to be placed outside to work effectively, which would make the process of installing it too complicated. 
-Therefore, we chose a Temperature Sensor and a Photoresistor as the sensors for the curtain system.
+Therefore, the final selection were a Temperature Sensor and a photoresistor as the sensors for the curtain system.
 
 \subsection{Equipment}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 
-Table \ref{tab:equipment} lists the parts that were required while building this project. This shows that this design is a very econimic solution,
+Table \ref{tab:equipment} lists the parts that were required while building this project. This shows that this design is a very economic solution,
 as most of the costs come from the model parts. On an actual curtain, the cost would likely be an estimated £30, affordable by most people.
 
 \begin{table}[h!]
@@ -225,7 +226,7 @@ as most of the costs come from the model parts. On an actual curtain, the cost w
 
 \section{Project execution}
 
-For demonstrations and work in school, the hardware needs to be easily transportable. Hence, rather than a fixed install of a full sized system, we decided to build a model. 
+For demonstrations and work in school, the hardware needs to be easily transportable. Hence, rather than a fixed install of a full sized system,  a model was built. 
 The result is the stand with a model curtain seen in Figure \ref{fig:curtainSys}.
 
 \begin{figure}
@@ -440,15 +441,18 @@ Plots were generated from the logged data using pandas and matplotlib libraries.
 %Desrive closing alg / psueducode
 %Describe driver program impl for testing
 
-The final step was to develop the algorithm that tells the servo when to close the curtains. 
-While we originally attempted to design a system that returns the percentage chance of the closing time being correct,
-we quickly realised the complexity of the code required, when a simple Boolean output would do. 
-Using Figure \ref{fig:plot1}, we finalised the plot to close the curtains if it is the afternoon, 
-the temperature drops by 0.5°C over a period of 30 minutes and there is not enough sunlight to heat the space, or if it is close to sunset. 
-To check the difference between the current temperature value and the value 30 minutes ago, we used a queue which holds 1800 values, 
-one for each second. Each time it recives a new value, it compares it to the first one, and checks if the temperature has dropped by 0.5°C.
-Light value increases as it gets darker, so once the light value is more than 15 and the temperature also falls, the curtain closes.
-In the event that it is simply a very hot day, the curtain system will close around sunset, for which a program exists to compute it\cite{url:sunsetEquation}.
+The final step was to develop an algorithm that tells the servo when to close the curtains. 
+While originally planned to design a system that returns the percentage chance of the closing time being correct,
+it turned out the complexity of the code required was too high, where a simple Boolean output would do. 
+The plot shown in Figure \ref{fig:plot1} supported the development of heuristics for closing the curtains, based on the time of the day, 
+the temperature dropping by 0.5°C over a period of 30 minutes and there not being enough sunlight to heat the space.
+Curtain closure is triggered only in the afternoon or if it is close to sunset. 
+Checking the difference between the current temperature value and the value 30 minutes ago, was implemented using a queue holding 1800 values, 
+accomodating one measurement per second. Each time a new measurement value is received, it is compared to the first value in the queue, 
+and the difference informs of temperature drops by 0.5°C.
+Light value readings increase as it gets darker, so once the light value is more than 15 and the temperature also falls, the curtain closes.
+In the event that it is simply a very hot day, the curtain system will close around sunset, for which a separate program exists to compute it
+unsing a simple sunset formula\cite{url:sunsetEquation}.
 
 The above expressed in pseudo code is shown below.
 
@@ -463,16 +467,16 @@ if time is pm AND
 \section{Results and discussion}
 %TODO short text
 
-We tested the system over the period of a week, and the results proved promising. 
-However, in some situations, it may be more benificial to have a more expensive system that can manage itself, capable of both opening, and closing, the curtains 
-to adapt to more unpredictable weather conditions.
+The system was tested over the period of a week, and the results proved promising. 
+However, in some situations, it may be more benificial to have a more expensive system that can manage itself, capable of both opening, and closing, 
+the curtains to adapt to the more unpredictable weather conditions present here in Britain.
 
 
 \section{Future Work}
 
 Work in progress includes pulling short range weather forecasts information from OpenMeteo\cite{url:openmeteo} for making better decisions 
 about curtain closing times.
-We have considered using reinforment learning techniques to automate the system, but these are currently out of scope due to lack of training 
+Reinforment learning techniques have been considered to automate the system, but these are currently out of scope due to lack of training 
 data and time.
 
 \begin{thebibliography}{99}
