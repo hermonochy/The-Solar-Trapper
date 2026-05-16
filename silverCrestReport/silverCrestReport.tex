@@ -1,8 +1,17 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage{listings}
+\usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{subcaption}
+\usepackage{pgfgantt}
 \usepackage{minted}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
+}
 \title{The Solar Trapper}
 \begin{document}
 \maketitle
@@ -24,6 +33,15 @@ This not only contributes to climate change but also leads to unsustainable expe
 
 The aim of this project is to develop a device that permits people to make more use of solar energy to heat their rooms, 
 while still keeping the cost of hardware and installing the system low. 
+
+The objectives of this project have been broken down into the following:
+
+\begin{enumerate}
+    \item Build a system which helps to save energy by reducing the need for space heating. Success criterion: The room is at its peak temperature when the owner returns home.
+    \item The system should be capable of running automatically while people are away for the day. Success criterion: No user interaction is required during the day.
+    \item The system should be affordable. Success criterion: Hardware costs do not exceed £50. No cost for software.
+    \item The system should be low cost to run. Success criterion: Cost at most £0.1 per day.
+\end{enumerate}
 
 The potential of using solar energy is significant, about $1.3 KW/m^2$ \cite{url:solarConstant}. 
 Even if the majority of the energy is lost to its surroundings and only $500 W/m^2$ are captured, 
@@ -95,6 +113,28 @@ Table \ref{tab:projtimeline} lists the various steps required in this project an
     \label{tab:projtimeline}
 \end{table}
 
+\begin{figure}[h!]
+    \includegraphics[width=\linewidth]{./figures/gantt.pdf}
+    \label{fig:gannt}
+  \end{figure}
+
+\subsection{Safety and Ethics}
+
+This system does not have many safety or ethical issues, as hardware played a relatively minor part in this project.
+
+\subsubsection{Safety}
+
+\begin{itemize}
+    \item Connections are not insulated, creating a risk of short circuits. Therefore, the prototype has to be supervised while in use.
+    \item The curtain system does not have an IP code, so it is limited to indoor use. 
+    \item The hot glue gun had to be handled carefully to avoid burns.
+    \item A teddy bear was used as the gravitational potential energy store to avoid any injuries when being released.
+\end{itemize}
+
+\subsubsection{Ethics}
+    
+    Ethics do not apply to this project, as no humans or animals were used in the making of this system.
+    
 \subsection{Curtain Closing mechanism}
 
 \begin{figure}
@@ -203,31 +243,52 @@ Therefore, the final selection were a Temperature Sensor and a photoresistor as 
 
 \subsection{Equipment}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 
-Table \ref{tab:equipment} lists the parts that were required while building this project. This shows that this design is a very economic solution,
-as most of the costs come from the model parts. On an actual curtain, the cost would likely be an estimated £30, affordable by most people.
+Table \ref{tab:equipment} lists the parts that were required while building this project. This shows this design to be a very economic solution.
+
 
 \begin{table}[h!]
-    \caption{Equipment}
+    \caption{Equipment Used}
     \begin{tabular}{l | l | l}
         Parts & Price & Source \\
         \hline
         LDR Photo Resistor & £ 3.99 & Bought by Mr. Chikunga \\
         DS18B20 Temperature Sensor & £ 3.95 & Bought by Mr. Chikunga \\
-        Servo Motor & £ 3.99 & Scavenged from a robot \\
+        Servo Motor & £ 3.99 & Scavenged from an old project \\
         Arduino Nano & £ 4.99 & Scavenged \\
         Micro SD Card & £ 7.99 & Bought on Amazon \\
         Salvaged Parts & £ 1 & - \\
         Model Stand & 18.99 & Bought on Amazon \\
         Model Curtain & 10.19 & Bought on Amazon \\
+        \hline
         Total & £ 55.09 & - \\
     \end{tabular}
     \label{tab:equipment}
 \end{table}
 
+However, as most of the costs come from the model parts, the cost of the full sized version would likely be an estimated £30, 
+affordable by most people. A more realistic table may look like Table \ref{tab:realisticEquipment}.
+
+\begin{table}[h!]
+    \caption{Actual Equipment}
+    \begin{tabular}{l | l | l}
+        Parts & Price\\
+        \hline
+        LDR Photo Resistor & £ 3.99\\
+        DS18B20 Temperature Sensor & £ 3.95\\
+        Servo Motor & £ 9.99\\
+        Arduino Nano & £ 4.99\\
+        Micro SD Card & £ 7.99\\
+        Salvaged Parts & £ 1\\
+        \hline
+        Total & £ 32.91\\
+    \end{tabular}
+    \label{tab:realisticEquipment}
+\end{table}
+
 \section{Project execution}
 
 For demonstrations and work in school, the hardware needs to be easily transportable. Hence, rather than a fixed install of a full sized system,  a model was built. 
-The result is the stand with a model curtain seen in Figure \ref{fig:curtainSys}.
+The result is the stand with a model curtain seen in Figure \ref{fig:curtainSys}. 
 
 \begin{figure}
     \centering
@@ -460,17 +521,28 @@ The above expressed in pseudo code is shown below.
 if time is pm AND 
     temperature drops for 30 minutes AND 
     light level > 15 OR 
-    sunset time reached:
+    sunset time reached: 
         do: close curtain
 \end{verbatim}
 
-\section{Results and discussion}
+\section{Results and conclusion}
 %TODO short text
 
-The system was tested over the period of a week, and the results proved promising. 
+The system was tested over the period of a week, and the results proved promising. If additional tests continue to report positive outcomes, this project could solve
+the heating crisis not only in the UK, but also other low-temperature regions, such as Eastern Europe\cite{url:EasternEuropeDeathsFromCold}. 
+With an average UK heating bill of roughly £100\cite{url:heatingBillsUK} per month, The Solar Trapper already pays for itself within half a month.
 However, in some situations, it may be more benificial to have a more expensive system that can manage itself, capable of both opening, and closing, 
 the curtains to adapt to the more unpredictable weather conditions present here in Britain.
 
+\subsection{Learnings}
+
+\begin{itemize}
+    \item Using GPIO's on a Rasberry Pi
+    \item Using Matplotlib and Pandas
+    \item Using Latex
+    \item Data logging
+    \item Writing a project report
+\end{itemize}
 
 \section{Future Work}
 
@@ -481,26 +553,30 @@ data and time.
 
 \begin{thebibliography}{99}
 
-    \bibitem{url:repo} The Smart Solar Trap. \hyperlink{https://github.com/hermonochy/The-Solar-Trapper}
+    \bibitem{url:repo} The Smart Solar Trap. \url{https://github.com/hermonochy/The-Solar-Trapper}
 
-    \bibitem{url:energyUse} 2023 UK greenhouse gas emissions, provisional figures \hyperlink{https://assets.publishing.service.gov.uk/media/6604460f91a320001a82b0fd/uk-greenhouse-gas-emissions-provisional-figures-statistical-release-2023.pdf}
+    \bibitem{url:energyUse} 2023 UK greenhouse gas emissions, provisional figures \url{https://assets.publishing.service.gov.uk/media/6604460f91a320001a82b0fd/uk-greenhouse-gas-emissions-provisional-figures-statistical-release-2023.pdf}
 
-    \bibitem{url:solarConstant} Solar Constant \hyperlink{https://en.wikipedia.org/wiki/Solar\_constant\#Apparent\_magnitude} (retrieved: 1 March 2025)
+    \bibitem{url:solarConstant} Solar Constant \url{https://en.wikipedia.org/wiki/Solar\_constant\#Apparent\_magnitude} (retrieved: 1 March 2025)
 
-    \bibitem{url:solarEnergyStore} \hyperlink{https://solar-energy-store.co.uk/off-grid-solar-pv-kits/2kw-2000w-solar-panel-pv-kit-system-for-off-grid-hybrid-self-storage-battery-storage-premium/}
+    \bibitem{url:solarEnergyStore} \url{https://solar-energy-store.co.uk/off-grid-solar-pv-kits/2kw-2000w-solar-panel-pv-kit-system-for-off-grid-hybrid-self-storage-battery-storage-premium/}
 
-    \bibitem{url:solarVenti} SolarVenti air collectors: \hyperlink{https://www.hess-solar.de}
+    \bibitem{url:solarVenti} SolarVenti air collectors: \url{https://www.hess-solar.de}
 
-    \bibitem{url:initialCurtainMechanism} Initial curtain opening and closing mechanism: \hyperlink{https://www.youtube.com/shorts/H6Un9TCUDxk}
+    \bibitem{url:initialCurtainMechanism} Initial curtain opening and closing mechanism: \url{https://www.youtube.com/shorts/H6Un9TCUDxk}
 
     \bibitem{url:1wire} Activating the 1-wire protocol on Raspbian: 
-        \hyperlink{https://www.raspberrypi-spy.co.uk/2018/02/enable-1-wire-interface-raspberry-pi/}, accessed on 27 Feb 2025.
+        \url{https://www.raspberrypi-spy.co.uk/2018/02/enable-1-wire-interface-raspberry-pi/}, accessed on 27 Feb 2025.
 
-    \bibitem{url:digitalTempSensor} DS18B20 Sensor: \hyperlink{https://randomnerdtutorials.com/raspberry-pi-ds18b20-python/}
+    \bibitem{url:digitalTempSensor} DS18B20 Sensor: \url{https://randomnerdtutorials.com/raspberry-pi-ds18b20-python/}
 
-    \bibitem{url:sunsetEquation} Sunset Equation: \hyperlink{https://en.wikipedia.org/wiki/Sunrise_equation}
+    \bibitem{url:sunsetEquation} Sunset Equation: \url{https://en.wikipedia.org/wiki/Sunrise_equation}
 
-    \bibitem{url:openmeteo} Open Meteo: \hyperlink{https://open-meteo.com/}, accessed on 26 Feb 2025.
+    \bibitem{url:EasternEuropeDeathsFromCold} "Hundreds die from the cold in eastern Europe": \url{https://www.wsws.org/en/articles/2012/02/cold-f03.html}
+
+    \bibitem{url:heatingBillsUK} Heating Bills in the UK: \url{https://plumr.co.uk/uk-heating-bill-estimator-tool/}
+
+    \bibitem{url:openmeteo} Open Meteo: \url{https://open-meteo.com/}.
         
 \end{thebibliography}
 
