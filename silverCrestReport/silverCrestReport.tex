@@ -4,7 +4,6 @@
 \usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{pgfgantt}
-\usepackage{minted}
 
 \hypersetup{
     colorlinks=true,
@@ -420,7 +419,7 @@ A bit more work is required to read light levels from the photoresistor circuit:
 voltage readings into digital numbers. These digital numbers are written onto a serial link with the following program to be loaded onto the
 Arduino board: 
 
-\begin{lstlisting}
+\begin{verbatim}
 const byte Pin1 = A5;
 
 void setup(){
@@ -433,7 +432,7 @@ void loop (){
  delay(1000);
 }
 
-\end{lstlisting}
+\end{verbatim}
 
 The Arduino is connected to the Raspberry Pi with a USB interface, and the values from the Arduino can
 therefore be read by opening the system file \verb|/dev/ttyUSB0|, once every second.
@@ -441,9 +440,8 @@ therefore be read by opening the system file \verb|/dev/ttyUSB0|, once every sec
 The following Python listing illustrates the process of reading data from sensors and clock,
 and writing these into a log file.
 
-\begin{listing}
-\begin{minted}{python3}
-    
+\begin{verbatim}
+
 # Reading from /sys/bus/w1/devices/28-3fa9d445207e/w1_slave
 
 import os
@@ -456,7 +454,8 @@ device_file = '/sys/bus/w1/devices/28-3fa9d445207e/w1_slave'
 
 date = str(datetime.datetime.today().strftime("%Y %m %d"))
 
-with open(device_file, 'r') as f, open(date+'.csv', 'w') as outputfile, serial.Serial('/dev/ttyUSB0', 9600, timeout = 2) as ser:
+with open(device_file, 'r') as f, open(date+'.csv', 'w') as outputfile, 
+               serial.Serial('/dev/ttyUSB0', 9600, timeout = 2) as ser:
   while True:
     lines = f.readlines()
     lightval = ser.readline().decode('utf-8')
@@ -469,15 +468,18 @@ with open(device_file, 'r') as f, open(date+'.csv', 'w') as outputfile, serial.S
       print("I",end=' ')
       continue
     if equals_pos != -1:
-      temp_string = lines[1][equals_pos+2:]
-      temp_c = float(temp_string)/1000
-      #print(temp_c)
-      measurementRecord = (f'{datetime.datetime.today().strftime("%Y-%m-%d")}, {datetime.datetime.now().strftime("%H:%M:%S")}, {int(lightval)}, {temp_c}')
+      temperature_string = lines[1][equals_pos+2:]
+      temperature_c = float(temperature_string)/1000
+      measurementRecord = (
+        f'{datetime.datetime.today().strftime("%Y-%m-%d")},
+        {datetime.datetime.now().strftime("%H:%M:%S")},
+        {int(lightval)},
+        {temperature_c}'
+      )
       print(measurementRecord)
       outputfile.write(measurementRecord+"\n")
 
-\end{minted}
-\end{listing}
+\end{verbatim}
 
 \subsubsection{Data Plotting}
 
